@@ -19,18 +19,22 @@
             justify-content: center;
             align-items: center;
             z-index: 5;
-            perspective: 1000px;
+            perspective: 1200px;
         }
 
+        /* Presentation Frame for Solid Background Images */
         .floating-logo {
             max-width: 450px;
             max-height: 450px;
             width: auto;
             height: auto;
-            /* Creates a cinematic shadow behind your exact image */
-            filter: drop-shadow(0px 40px 30px rgba(0, 0, 0, 0.8));
+            border-radius: 8px; /* Sharp, clean edges like a glass print */
+            border: 1px solid rgba(255, 255, 255, 0.4); /* Subtle edge highlight */
+            /* Deep, premium 3D shadow */
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.1);
             transition: transform 0.1s ease-out;
             transform-style: preserve-3d;
+            background-color: #fff; /* Ensures no weird transparency glitches */
         }
     </style>
 </head>
@@ -44,9 +48,9 @@
     <!-- 3D Background -->
     <div id="canvas-container"></div>
 
-    <!-- Your Exact Uploaded Logo -->
+    <!-- Your Exact Uploaded Logo with URL-Encoded Spaces -->
     <div class="logo-display-wrapper">
-        <img src="AETHEL ADVISIORS LOGO.png" alt="Aethel Advisors Logo" class="floating-logo" id="aethel-logo" onerror="this.src='https://via.placeholder.com/450x450?text=Upload+AETHEL+ADVISIORS+LOGO.png+to+GitHub'">
+        <img src="AETHEL%20ADVISIORS%20LOGO.png" alt="Aethel Advisors Logo" class="floating-logo" id="aethel-logo">
     </div>
 
     <script>
@@ -55,14 +59,14 @@
         const wrapper = document.querySelector('.logo-display-wrapper');
 
         wrapper.addEventListener('mousemove', (e) => {
-            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-            logo.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg) scale(1.05)`;
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 30;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 30;
+            logo.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg) scale(1.02)`;
         });
 
         wrapper.addEventListener('mouseleave', () => {
             logo.style.transform = `rotateY(0deg) rotateX(0deg) scale(1)`;
-            logo.style.transition = "transform 0.5s ease";
+            logo.style.transition = "transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)";
         });
         wrapper.addEventListener('mouseenter', () => {
             logo.style.transition = "none";
